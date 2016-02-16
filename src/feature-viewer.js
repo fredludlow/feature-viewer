@@ -440,7 +440,9 @@ var FeatureViewer = (function () {
                     return [{
                         x: d.x,
                         y: 0,
-                        id: d.id
+                        id: d.id,
+                        description: d.description,
+                        color: d.color
                     }, {
                         x: d.y,
                         y: d.level + 1,
@@ -578,7 +580,7 @@ var FeatureViewer = (function () {
                     })
                     .attr("width", rectWidth2)
                     .attr("height", rectHeight)
-                    .style("fill", object.color)
+                    .style("fill", function(d) { return d.color || object.color })
                     .style("z-index", "13")
                     .call(d3.helper.tooltip(object));
 
@@ -657,7 +659,7 @@ var FeatureViewer = (function () {
                         else return scaling(d.x + 0.4) - scaling(d.x - 0.4);
                     })
                     .attr("height", 12)
-                    .style("fill", object.color)
+                    .style("fill", function(d) {return d.color ||  object.color})
                     .style("z-index", "3")
                     .call(d3.helper.tooltip(object));
 
@@ -691,7 +693,7 @@ var FeatureViewer = (function () {
                     })
                     .attr("d", lineBond)
                     .style("fill", "none")
-                    .style("stroke", object.color)
+                    .style("stroke", function(d) {return d[0].color || object.color})
                     .style("z-index", "3")
                     .style("stroke-width", "2px")
                     .call(d3.helper.tooltip(object));
@@ -737,7 +739,7 @@ var FeatureViewer = (function () {
                     })
                     .attr("width", rectWidth)
                     .attr("height", rectHeight)
-                    .style("fill", object.color)
+                    .style("fill", function(d) { return d.color || object.color })
                     .style("z-index", "13")
                     .call(d3.helper.tooltip(object));
 
