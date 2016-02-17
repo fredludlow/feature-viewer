@@ -36,7 +36,7 @@ var FeatureViewer = (function () {
             //change color && memorize
             if (featureSelected !== {}) d3.select(featureSelected.id).style("fill", featureSelected.originalColor);
             if (object.type !== "path"){
-                featureSelected = {"id": feat, "originalColor": object.color};
+                featureSelected = {"id": feat, "originalColor": d3.select(feat).style("fill") || object.color};
                 d3.select(feat).style("fill", "orangered");
             }
         }
